@@ -1,0 +1,29 @@
+on:
+  push:
+    branches:
+      - test
+name: Config conversion
+jobs:
+  convert_config:
+    name: Converts config
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Converting config to configmaps
+        uses: coderbydesign/rbac-config-actions@open-pr
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch_name: test-action
+#       - name: Status Check
+#         run: git remote -v
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#       - name: Create a PR with Config Changes
+#         run: hub pull-request --no-edit -b master -h coderbydesign:test-action
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3.8.2
+        with:
+          branch: test
+          base: master
