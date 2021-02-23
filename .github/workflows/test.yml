@@ -13,7 +13,7 @@ jobs:
         uses: coderbydesign/rbac-config-actions@open-pr
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          branch_name: test-action
+          branch_name: test
 #       - name: Status Check
 #         run: git remote -v
 #         env:
